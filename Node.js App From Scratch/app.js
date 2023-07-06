@@ -28,12 +28,15 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Handlebars Helpers
+const { formatDate } = require('./helpers/hbs');
+
 // Handlebars
 const hbs = exphbs.create({
   extname      :'hbs',
   layoutsDir   : 'views/layouts',
   defaultLayout: 'main',
-  helpers      : '',
+  helpers      : { formatDate },
   // partialsDir  : [
   //     ''
   // ]
