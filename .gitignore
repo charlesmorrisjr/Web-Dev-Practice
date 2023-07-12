@@ -2,4 +2,4 @@ node_modules
 css-flexbox-poster.png
 css-grid-poster.png
 php-crash-main.zip
-.env
+*.env
