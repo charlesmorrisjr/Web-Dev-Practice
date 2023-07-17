@@ -18,6 +18,15 @@ export default function App() {
     setNewItem("");
   }
 
+  function toggleTodo(id, completed) {
+    setTodos(currentTodos => {
+      return currentTodos.map(todo => {
+        if (todo.id === id) return { ...todo, completed}; // If clicked todo is found, toggle its state
+        return todo;  // Otherwise, return the todo unchanged
+      });
+    })
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit} action="" className="new-item-form">
@@ -38,7 +47,10 @@ export default function App() {
           return (
             <li key={todo.id}>
               <label>
-              <input type="checkbox" checked={todo.completed} name="" id="" />
+                <input type="checkbox"
+                  checked={todo.completed}
+                  onChange={e => toggleTodo(todo.id, e.target.checked)}
+                />
                 {todo.title}
               </label>
               <button className="btn btn-danger">Delete</button>
