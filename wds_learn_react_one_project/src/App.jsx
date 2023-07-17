@@ -24,7 +24,15 @@ export default function App() {
         if (todo.id === id) return { ...todo, completed}; // If clicked todo is found, toggle its state
         return todo;  // Otherwise, return the todo unchanged
       });
-    })
+    });
+  }
+
+  // Call setTodos as return an array that contains all the todo objects
+  // except for the todo with the specified id
+  function deleteTodo(id) {
+    setTodos(currentTodos => {
+      return currentTodos.filter(todo => todo.id !== id);
+    });
   }
 
   return (
@@ -53,7 +61,12 @@ export default function App() {
                 />
                 {todo.title}
               </label>
-              <button className="btn btn-danger">Delete</button>
+              <button
+                className="btn btn-danger"
+                onClick={() => deleteTodo(todo.id)}
+              >
+                Delete
+              </button>
             </li>
           );
         })}
